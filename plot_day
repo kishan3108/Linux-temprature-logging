@@ -1,0 +1,16 @@
+set terminal pngcairo size 1200,600 enhanced font 'Verdana'
+set output sprintf('%s.png', filename)
+set timefmt '%d/%m/%Y %H:%M:%S'
+set xdata time
+set format x '%m/%d'
+set grid ytics lc rgb "#bbbbbb" lw 2 lt 1
+set yr [20:100]
+set title "Temperature log"
+set xlabel "Date (month:day)"
+set ylabel "degree Celcius"
+
+plot "t_log.txt" using 7:1 with lines title "core:1" linewidth 3,\
+     "t_log.txt" using 7:2 with lines title "core:2" linewidth 3 ,\
+     "t_log.txt" using 7:3 with lines title "core:3" linewidth 3 ,\
+     "t_log.txt" using 7:4 with lines title "core:4" linewidth 3 
+replot
